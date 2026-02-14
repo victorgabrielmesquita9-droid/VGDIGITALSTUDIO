@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VG STUDIO | Digital Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon: #00ffcc;
+            --fundo-card: rgba(15, 15, 15, 0.95);
+            --borda: rgba(0, 255, 204, 0.2);
+            --texto-corpo: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92)), 
+                        url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; background: rgba(5, 5, 5, 0.98);
+            border-bottom: 1px solid var(--borda); z-index: 1000; padding: 10px 0;
+            backdrop-filter: blur(12px);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--neon);
+            font-weight: bold;
+        }
+        .logo-nav svg { width: 35px; height: 35px; }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+
+        /* HEADER */
+        header { text-align: center; padding: 180px 0 100px; }
+        .big-logo {
+            width: 120px; height: 120px; margin: 0 auto 25px;
+            filter: drop-shadow(0 0 15px var(--neon));
+        }
+        h1 { font-size: 2.8rem; letter-spacing: -1px; margin-bottom: 10px; }
+        .subtitle { color: var(--neon); font-size: 1.1rem; opacity: 0.8; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* SEÇÕES */
+        section {
+            background: var(--fundo-card); border: 1px solid #222; border-radius: 20px;
+            padding: 50px; margin-bottom: 50px; backdrop-filter: blur(12px); transition: 0.3s;
+        }
+        section:hover { border-color: var(--borda); transform: translateY(-5px); }
+        h2 { color: var(--neon); font-size: 1.4rem; margin-bottom: 35px; text-transform: uppercase; display: flex; align-items: center; gap: 15px; }
+        h2::after { content: ""; height: 1px; flex-grow: 1; background: rgba(255,255,255,0.05); }
+
+        /* GRID DE SERVIÇOS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .service-card { padding: 25px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid transparent; }
+        .service-card i { color: var(--neon); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+        .service-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
+        .service-card p { font-size: 0.85rem; color: var(--texto-corpo); }
+
+        /* SHOWCASE (PROJETOS) */
+        .project-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .project-card { position: relative; border-radius: 10px; overflow: hidden; height: 220px; border: 1px solid #333; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .project-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .project-info { position: absolute; bottom: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; }
+
+        /* PROCESSO (WORKFLOW) */
+        .workflow { display: flex; flex-direction: column; gap: 20px; }
+        .step { display: flex; gap: 20px; align-items: flex-start; }
+        .step-num { color: var(--neon); font-weight: bold; font-size: 1.2rem; }
+
+        /* FAQ (INTEL) */
+        details { background: rgba(255,255,255,0.02); border: 1px solid #333; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; }
+        summary { font-weight: bold; color: #fff; outline: none; }
+        details p { font-size: 0.9rem; color: var(--texto-corpo); margin-top: 10px; }
+
+        /* BOTÃO */
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; gap: 12px; background: var(--neon); color: #000;
+            padding: 18px 45px; border-radius: 8px; text-decoration: none; font-weight: 700;
+            text-transform: uppercase; transition: 0.3s; margin-top: 20px;
+        }
+        .btn-whatsapp:hover { box-shadow: 0 0 30px var(--neon); transform: scale(1.02); }
+
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid #222; color: #555; }
+        .social-links a { color: #fff; font-size: 1.3rem; margin: 0 15px; opacity: 0.4; transition: 0.3s; }
+        .social-links a:hover { opacity: 1; color: var(--neon); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            section { padding: 30px 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <svg style="display: none;">
+        <symbol id="logo-vg" viewBox="0 0 100 100">
+            <path d="M20 30L50 80L58 65" stroke="currentColor" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M85 30C85 30 85 20 65 20C45 20 40 40 40 50C40 60 45 80 65 80C85 80 85 65 85 65V55H68" stroke="currentColor" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo-nav">
+                <svg><use xlink:href="#logo-vg"></use></svg>
+                <span>VG STUDIO</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Soluções</a></li>
+                <li><a href="#projetos">Portfolio</a></li>
+                <li><a href="#processo">Processo</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="big-logo">
+                <svg style="color: var(--neon); width: 100%; height: 100%;"><use xlink:href="#logo-vg"></use></svg>
+            </div>
+            <h1>VG DIGITAL STUDIO</h1>
+            <p class="subtitle">Engenharia de Interfaces de Luxo</p>
+        </header>
+
+        <section id="sobre">
+            <h2><i class="fas fa-terminal"></i> Core.sys</h2>
+            <p>A VG Studio é focada em transformar conceitos complexos em ecossistemas digitais de alta performance. Unimos **Engenharia de Software** e **Design Estratégico** para criar produtos que escalam e dominam o mercado digital.</p>
+        </section>
+
+        <section id="servicos">
+            <h2><i class="fas fa-layer-group"></i> Soluções</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h4>Arquitetura Web</h4>
+                    <p>Sistemas robustos desenvolvidos com foco em conversão e performance extrema.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Otimização de Velocidade</h4>
+                    <p>Redução de latência e otimização total de Core Web Vitals para SEO.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-fingerprint"></i>
+                    <h4>Estratégia UI/UX</h4>
+                    <p>Interfaces exclusivas desenhadas pixel a pixel para uma experiência premium.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2><i class="fas fa-eye"></i> Showcase</h2>
+            <div class="project-gallery">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=500" alt="Dashboard">
+                    <div class="project-info">
+                        <span style="font-size: 0.7rem; color: var(--neon);">FINANCEIRO</span>
+                        <h4 style="font-size: 0.9rem;">Nexus Dashboard v2.0</h4>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=500" alt="Analitico">
+                    <div class="project-info">
+                        <span style="font-size: 0.7rem; color: var(--neon);">E-COMMERCE</span>
+                        <h4 style="font-size: 0.9rem;">Elite Store UI Kit</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="processo">
+            <h2><i class="fas fa-cogs"></i> Nosso Processo</h2>
+            <div class="workflow">
+                <div class="step">
+                    <span class="step-num">01.</span>
+                    <div><strong>Briefing & Diagnóstico:</strong> Entendemos seu modelo de negócio e gargalos técnicos reais.</div>
+                </div>
+                <div class="step">
+                    <span class="step-num">02.</span>
+                    <div><strong>Prototipagem de Alta Fidelidade:</strong> Criamos o design completo antes de iniciar a codificação.</div>
+                </div>
+                <div class="step">
+                    <span class="step-num">03.</span>
+                    <div><strong>Desenvolvimento Ágil:</strong> Código limpo, seguro e documentado com entregas semanais.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2><i class="fas fa-comment-dots"></i> Perguntas Frequentes</h2>
+            <details>
+                <summary>Como funciona o pagamento?</summary>
+                <p>Estruturamos geralmente em 50% de entrada e 50% na entrega e aprovação final do projeto.</p>
+            </details>
+            <details>
+                <summary>O código fonte é entregue?</summary>
+                <p>Sim. O projeto é 100% de propriedade do cliente, com documentação técnica completa.</p>
+            </details>
+            <details>
+                <summary>Vocês dão suporte após o lançamento?</summary>
+                <p>Sim, oferecemos planos de manutenção e suporte técnico para garantir que tudo continue rodando perfeitamente.</p>
+            </details>
+        </section>
+
+        <section style="text-align: center;" id="contato">
+            <h2><i class="fas fa-satellite-dish"></i> Conato</h2>
+            <p>Inicie seu protocolo de transformação digital com a nossa equipe hoje mesmo.</p>
+            <a href="https://wa.me/5586995549933" class="btn-whatsapp">
+                ESTABELECER CONEXÃO
+            </a>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2026 VG DIGITAL STUDIO // TODOS OS DIREITOS RESERVADOS</p>
+            <p style="font-size: 0.6rem; margin-top: 15px; letter-spacing: 2px;">STATUS: ONLINE // VERSÃO: 3.0.4</p>
+        </footer>
+    </div>
+
+</body>
+</html>
